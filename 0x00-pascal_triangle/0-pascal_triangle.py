@@ -1,18 +1,23 @@
 #!/usr/bin/python3
-"""Pascal's Triangle"""
+"""
+    this module contains a function that returns the pascal's triangle
+"""
 
 
 def pascal_triangle(n):
-    """Triangle"""
-    if n <= 0:
-        return []
-    pas = [[1]]
-    for row_number in range(1, n):
-        row = [1]
-        for j in range(1, row_number):
-            element = pas[row_number - 1][j - 1] + pas[row_number - 1][j]
-            row.append(element)
-        row.append(1)
-        pas.append(row)
+    """this is the function that contains the implimentation"""
+    if (n <= 0):
+        return ([])
+    main_list = [[1]]
+    for i in range(0, (n - 1)):
+        sub_list = [1]
+        for j in range(0, i):
+            sub_list.append(main_list[i][j] + main_list[i][j + 1])
+        sub_list.append(1)
+        main_list.append(sub_list)
+    return (main_list)
 
-        return pas
+
+if __name__ == "__main__":
+    for row in pascal_triangle(5):
+        print("[{}]".format(",".join([str(x) for x in row])))
